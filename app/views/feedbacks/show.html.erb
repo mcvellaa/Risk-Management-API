@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Event:</strong>
+  <%= @feedback.event_id %>
+</p>
+
+<p>
+  <strong>From:</strong>
+  <%= @feedback.from %>
+</p>
+
+<p>
+  <strong>Datetime:</strong>
+  <%= @feedback.datetime %>
+</p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @feedback.text %>
+</p>
+
+<%= link_to 'Edit', edit_feedback_path(@feedback) %> |
+<%= link_to 'Back', feedbacks_path %>

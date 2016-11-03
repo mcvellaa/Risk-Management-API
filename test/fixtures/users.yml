@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  path_to_fb_info: MyString
+  last_logged_on: 2016-11-03 12:27:26
+  date_joined: 2016-11-03 12:27:26
+
+two:
+  path_to_fb_info: MyString
+  last_logged_on: 2016-11-03 12:27:26
+  date_joined: 2016-11-03 12:27:26

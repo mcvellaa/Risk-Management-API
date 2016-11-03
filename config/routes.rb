@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  resources :feedbacks
+  resources :check_outs
+  resources :check_ins
+  resources :questions
+  resources :data
+  resources :invitations
+  resources :guests
+  resources :assignments
+  resources :locations
+  resources :events
+  resources :event_users
+  resources :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

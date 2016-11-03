@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Path to fb info:</strong>
+  <%= @user.path_to_fb_info %>
+</p>
+
+<p>
+  <strong>Last logged on:</strong>
+  <%= @user.last_logged_on %>
+</p>
+
+<p>
+  <strong>Date joined:</strong>
+  <%= @user.date_joined %>
+</p>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

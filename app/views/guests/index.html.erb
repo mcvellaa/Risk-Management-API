@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Guests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Optional title</th>
+      <th>Optional text</th>
+      <th>Phone</th>
+      <th>Birthdate</th>
+      <th>Texting consent</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @guests.each do |guest| %>
+      <tr>
+        <td><%= guest.name %></td>
+        <td><%= guest.optional_title %></td>
+        <td><%= guest.optional_text %></td>
+        <td><%= guest.phone %></td>
+        <td><%= guest.birthdate %></td>
+        <td><%= guest.texting_consent %></td>
+        <td><%= link_to 'Show', guest %></td>
+        <td><%= link_to 'Edit', edit_guest_path(guest) %></td>
+        <td><%= link_to 'Destroy', guest, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Guest', new_guest_path %>

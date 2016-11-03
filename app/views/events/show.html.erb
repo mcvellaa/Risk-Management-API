@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @event.title %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @event.location %>
+</p>
+
+<p>
+  <strong>Start:</strong>
+  <%= @event.start %>
+</p>
+
+<p>
+  <strong>End:</strong>
+  <%= @event.end %>
+</p>
+
+<p>
+  <strong>Max attendance:</strong>
+  <%= @event.max_attendance %>
+</p>
+
+<p>
+  <strong>Time to send invites:</strong>
+  <%= @event.time_to_send_invites %>
+</p>
+
+<p>
+  <strong>List close:</strong>
+  <%= @event.list_close %>
+</p>
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>

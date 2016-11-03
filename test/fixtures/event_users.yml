@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  event_id: 1
+  user_id: 1
+  role: MyString
+  last_location: MyString
+  location_datetime: 2016-11-03 12:30:38
+
+two:
+  event_id: 1
+  user_id: 1
+  role: MyString
+  last_location: MyString
+  location_datetime: 2016-11-03 12:30:38

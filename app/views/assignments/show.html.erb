@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Event:</strong>
+  <%= @assignment.event_id %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @assignment.location_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @assignment.user_id %>
+</p>
+
+<p>
+  <strong>Start:</strong>
+  <%= @assignment.start %>
+</p>
+
+<p>
+  <strong>End:</strong>
+  <%= @assignment.end %>
+</p>
+
+<p>
+  <strong>Attended:</strong>
+  <%= @assignment.attended %>
+</p>
+
+<%= link_to 'Edit', edit_assignment_path(@assignment) %> |
+<%= link_to 'Back', assignments_path %>

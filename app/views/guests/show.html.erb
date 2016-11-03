@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @guest.name %>
+</p>
+
+<p>
+  <strong>Optional title:</strong>
+  <%= @guest.optional_title %>
+</p>
+
+<p>
+  <strong>Optional text:</strong>
+  <%= @guest.optional_text %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @guest.phone %>
+</p>
+
+<p>
+  <strong>Birthdate:</strong>
+  <%= @guest.birthdate %>
+</p>
+
+<p>
+  <strong>Texting consent:</strong>
+  <%= @guest.texting_consent %>
+</p>
+
+<%= link_to 'Edit', edit_guest_path(@guest) %> |
+<%= link_to 'Back', guests_path %>
