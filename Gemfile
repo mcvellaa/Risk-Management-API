@@ -24,7 +24,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # To make this into an API
 gem 'rails-api'
 # Use foundation to improve the views
-gem 'foundation-rails'
+gem 'foundation-rails', '5.5.3.2'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
