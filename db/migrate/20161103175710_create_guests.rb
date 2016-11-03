@@ -6,7 +6,7 @@ class CreateGuests < ActiveRecord::Migration
       t.string :optional_text
       t.string :phone
       t.string :birthdate
-      t.boolean :texting_consent
+      t.boolean :texting_consent, default: true
 
       t.timestamps null: false
     end

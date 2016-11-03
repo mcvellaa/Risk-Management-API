@@ -6,7 +6,7 @@ class CreateAssignments < ActiveRecord::Migration
       t.integer :user_id
       t.datetime :start
       t.datetime :end
-      t.boolean :attended
+      t.boolean :attended, default: false
 
       t.timestamps null: false
     end
