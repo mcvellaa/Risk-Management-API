@@ -12,4 +12,6 @@ class User < ActiveRecord::Base
     has_many :locations, through: :assignments
     has_many :questions, through: :data
 
+    # Validations
+
 end
