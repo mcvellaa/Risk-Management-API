@@ -5,49 +5,46 @@ class CheckInsController < ApplicationController
   # GET /check_ins.json
   def index
     @check_ins = CheckIn.all
+
+    render json: @check_ins
   end
 
   # GET /check_ins/1
   # GET /check_ins/1.json
   def show
+    render json @check_in 
   end
 
   # GET /check_ins/new
-  def new
-    @check_in = CheckIn.new
-  end
+  # def new
+  #   @check_in = CheckIn.new
+  # end
 
   # GET /check_ins/1/edit
-  def edit
-  end
+  # def edit
+  # end
 
   # POST /check_ins
   # POST /check_ins.json
   def create
     @check_in = CheckIn.new(check_in_params)
 
-    respond_to do |format|
-      if @check_in.save
-        format.html { redirect_to @check_in, notice: 'Check in was successfully created.' }
-        format.json { render :show, status: :created, location: @check_in }
-      else
-        format.html { render :new }
-        format.json { render json: @check_in.errors, status: :unprocessable_entity }
-      end
+    if @check_in.save
+      render json: @check_in, status: :created, location: @check_in
+    else
+      render json: @check_in.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /check_ins/1
   # PATCH/PUT /check_ins/1.json
   def update
-    respond_to do |format|
-      if @check_in.update(check_in_params)
-        format.html { redirect_to @check_in, notice: 'Check in was successfully updated.' }
-        format.json { render :show, status: :ok, location: @check_in }
-      else
-        format.html { render :edit }
-        format.json { render json: @check_in.errors, status: :unprocessable_entity }
-      end
+    @check_in = CheckIn.find(params[:id])
+
+    if @check_in.update(check_in_params)
+      head :no_content
+    else
+      render json: @check_in.errors, status: :unprocessable_entity
     end
   end
 
@@ -55,10 +52,8 @@ class CheckInsController < ApplicationController
   # DELETE /check_ins/1.json
   def destroy
     @check_in.destroy
-    respond_to do |format|
-      format.html { redirect_to check_ins_url, notice: 'Check in was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    
+    head :no_content
   end
 
   private

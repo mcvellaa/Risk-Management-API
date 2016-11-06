@@ -5,49 +5,46 @@ class EventUsersController < ApplicationController
   # GET /event_users.json
   def index
     @event_users = EventUser.all
+
+    render json: @event_users
   end
 
   # GET /event_users/1
   # GET /event_users/1.json
   def show
+    render json: @event_user
   end
 
   # GET /event_users/new
-  def new
-    @event_user = EventUser.new
-  end
+  #def new
+  #  @event_user = EventUser.new
+  #end
 
   # GET /event_users/1/edit
-  def edit
-  end
+  #def edit
+  #end
 
   # POST /event_users
   # POST /event_users.json
   def create
     @event_user = EventUser.new(event_user_params)
 
-    respond_to do |format|
-      if @event_user.save
-        format.html { redirect_to @event_user, notice: 'Event user was successfully created.' }
-        format.json { render :show, status: :created, location: @event_user }
-      else
-        format.html { render :new }
-        format.json { render json: @event_user.errors, status: :unprocessable_entity }
-      end
+    if @event_user.save
+      render json: @event_user, status: :created, location: @event_user
+    else
+      render json: @event_user.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /event_users/1
   # PATCH/PUT /event_users/1.json
   def update
-    respond_to do |format|
-      if @event_user.update(event_user_params)
-        format.html { redirect_to @event_user, notice: 'Event user was successfully updated.' }
-        format.json { render :show, status: :ok, location: @event_user }
-      else
-        format.html { render :edit }
-        format.json { render json: @event_user.errors, status: :unprocessable_entity }
-      end
+    @event_user = EventUser.find(params[:id])
+
+    if @event_user.update(event_user_params)
+      head :no_content
+    else
+      render json: @assignment.errors, status: :unprocessable_entity
     end
   end
 
@@ -55,10 +52,8 @@ class EventUsersController < ApplicationController
   # DELETE /event_users/1.json
   def destroy
     @event_user.destroy
-    respond_to do |format|
-      format.html { redirect_to event_users_url, notice: 'Event user was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    
+    head :no_content
   end
 
   private

@@ -5,49 +5,46 @@ class GuestsController < ApplicationController
   # GET /guests.json
   def index
     @guests = Guest.all
+
+    render json: @guests
   end
 
   # GET /guests/1
   # GET /guests/1.json
   def show
+    render json: @guest
   end
 
   # GET /guests/new
-  def new
-    @guest = Guest.new
-  end
+  #def new
+  #  @guest = Guest.new
+  #end
 
   # GET /guests/1/edit
-  def edit
-  end
+  #def edit
+  #end
 
   # POST /guests
   # POST /guests.json
   def create
     @guest = Guest.new(guest_params)
 
-    respond_to do |format|
-      if @guest.save
-        format.html { redirect_to @guest, notice: 'Guest was successfully created.' }
-        format.json { render :show, status: :created, location: @guest }
-      else
-        format.html { render :new }
-        format.json { render json: @guest.errors, status: :unprocessable_entity }
-      end
+    if @guest.save
+      render json: @guest, status: :created, location: @guest
+    else
+      render json: @guest.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /guests/1
   # PATCH/PUT /guests/1.json
   def update
-    respond_to do |format|
-      if @guest.update(guest_params)
-        format.html { redirect_to @guest, notice: 'Guest was successfully updated.' }
-        format.json { render :show, status: :ok, location: @guest }
-      else
-        format.html { render :edit }
-        format.json { render json: @guest.errors, status: :unprocessable_entity }
-      end
+    @guest = Guest.find(params[:id])
+
+    if @guest.update(guest_params)
+      head :no_content
+    else
+      render json: @guest.errors, status: :unprocessable_entity
     end
   end
 
@@ -55,10 +52,8 @@ class GuestsController < ApplicationController
   # DELETE /guests/1.json
   def destroy
     @guest.destroy
-    respond_to do |format|
-      format.html { redirect_to guests_url, notice: 'Guest was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    
+    head :no_content
   end
 
   private

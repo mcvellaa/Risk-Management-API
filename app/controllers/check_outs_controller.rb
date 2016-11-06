@@ -5,49 +5,46 @@ class CheckOutsController < ApplicationController
   # GET /check_outs.json
   def index
     @check_outs = CheckOut.all
+
+    render json: @check_outs
   end
 
   # GET /check_outs/1
   # GET /check_outs/1.json
   def show
+    render json: @check_out
   end
 
   # GET /check_outs/new
-  def new
-    @check_out = CheckOut.new
-  end
+  #def new
+  #  @check_out = CheckOut.new
+  #end
 
   # GET /check_outs/1/edit
-  def edit
-  end
+  #def edit
+  #end
 
   # POST /check_outs
   # POST /check_outs.json
   def create
     @check_out = CheckOut.new(check_out_params)
 
-    respond_to do |format|
-      if @check_out.save
-        format.html { redirect_to @check_out, notice: 'Check out was successfully created.' }
-        format.json { render :show, status: :created, location: @check_out }
-      else
-        format.html { render :new }
-        format.json { render json: @check_out.errors, status: :unprocessable_entity }
-      end
+    if @check_out.save
+      render json: @check_out, status: :created, location: @check_out
+    else
+      render json: @check_out.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /check_outs/1
   # PATCH/PUT /check_outs/1.json
   def update
-    respond_to do |format|
-      if @check_out.update(check_out_params)
-        format.html { redirect_to @check_out, notice: 'Check out was successfully updated.' }
-        format.json { render :show, status: :ok, location: @check_out }
-      else
-        format.html { render :edit }
-        format.json { render json: @check_out.errors, status: :unprocessable_entity }
-      end
+    @check_out = CheckOut.find(params[:id])
+  
+    if @check_out.update(check_out_params)
+      head :no_content
+    else
+      render json: @check_out.errors, status: :unprocessable_entity
     end
   end
 
@@ -55,10 +52,8 @@ class CheckOutsController < ApplicationController
   # DELETE /check_outs/1.json
   def destroy
     @check_out.destroy
-    respond_to do |format|
-      format.html { redirect_to check_outs_url, notice: 'Check out was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    
+    head :no_content
   end
 
   private

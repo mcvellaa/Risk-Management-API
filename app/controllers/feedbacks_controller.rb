@@ -5,49 +5,46 @@ class FeedbacksController < ApplicationController
   # GET /feedbacks.json
   def index
     @feedbacks = Feedback.all
+
+    render json: @feedbacks
   end
 
   # GET /feedbacks/1
   # GET /feedbacks/1.json
   def show
+    render json: @feedback
   end
 
   # GET /feedbacks/new
-  def new
-    @feedback = Feedback.new
-  end
+  #def new
+  #  @feedback = Feedback.new
+  #end
 
   # GET /feedbacks/1/edit
-  def edit
-  end
+  #def edit
+  #end
 
   # POST /feedbacks
   # POST /feedbacks.json
   def create
     @feedback = Feedback.new(feedback_params)
 
-    respond_to do |format|
-      if @feedback.save
-        format.html { redirect_to @feedback, notice: 'Feedback was successfully created.' }
-        format.json { render :show, status: :created, location: @feedback }
-      else
-        format.html { render :new }
-        format.json { render json: @feedback.errors, status: :unprocessable_entity }
-      end
+    if @feedback.save
+      render json: @feedback, status: :created, location: @feedback
+    else
+      render json: @feedback.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /feedbacks/1
   # PATCH/PUT /feedbacks/1.json
   def update
-    respond_to do |format|
-      if @feedback.update(feedback_params)
-        format.html { redirect_to @feedback, notice: 'Feedback was successfully updated.' }
-        format.json { render :show, status: :ok, location: @feedback }
-      else
-        format.html { render :edit }
-        format.json { render json: @feedback.errors, status: :unprocessable_entity }
-      end
+    @feedback = Feedback.find(params[:id])
+    
+    if @feedback.update(feedback_params)
+      head :no_content
+    else
+      render json: @feedback.errors, status: :unprocessable_entity
     end
   end
 
@@ -55,10 +52,8 @@ class FeedbacksController < ApplicationController
   # DELETE /feedbacks/1.json
   def destroy
     @feedback.destroy
-    respond_to do |format|
-      format.html { redirect_to feedbacks_url, notice: 'Feedback was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    
+    head :no_content
   end
 
   private
