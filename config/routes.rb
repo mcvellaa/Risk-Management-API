@@ -1,16 +1,20 @@
 Rails.application.routes.draw do
-  resources :feedbacks, except [:new, :edit]
-  resources :check_outs, except [:new, :edit]
-  resources :check_ins, except [:new, :edit]
-  resources :questions, except [:new, :edit]
-  resources :data, except [:new, :edit]
-  resources :invitations, except [:new, :edit]
-  resources :guests, except [:new, :edit]
-  resources :assignments, except [:new, :edit]
-  resources :locations, except [:new, :edit]
-  resources :events, except [:new, :edit]
-  resources :event_users, except [:new, :edit]
-  resources :users, except [:new, :edit]
+  resources :feedbacks, except: [:new, :edit]
+  resources :check_outs, except: [:new, :edit]
+  resources :check_ins, except: [:new, :edit]
+  resources :questions, except: [:new, :edit]
+  resources :data, except: [:new, :edit]
+  resources :invitations, except: [:new, :edit]
+  resources :guests, except: [:new, :edit]
+  resources :assignments, except: [:new, :edit]
+  resources :locations, except: [:new, :edit]
+  resources :events, except: [:new, :edit]
+  resources :event_users, except: [:new, :edit]
+  resources :users, except: [:new, :edit]
+
+  #route to handle token
+  get :token, controller: 'application'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -14,4 +14,11 @@ class User < ActiveRecord::Base
 
     # Validations
 
+    # Auth Token
+    before_create :generate_auth_token
+
+    def generate_auth_token
+        self.auth_token = SecureRandom.hex
+    end
+
 end
