@@ -65,6 +65,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:path_to_fb_info, :last_logged_on, :date_joined)
+      params.require(:user).permit(:last_logged_on, :date_joined, :auth_token, :full_name, :email, :role)
     end
 end
