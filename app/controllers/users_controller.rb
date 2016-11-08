@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  skip_before_filter :authenticate_user_from_token, only: [:create]
 
   # GET /users
   # GET /users.json
