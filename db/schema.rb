@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161107181857) do
+ActiveRecord::Schema.define(version: 20161110214036) do
 
   create_table "assignments", force: :cascade do |t|
     t.integer  "event_id"
@@ -116,11 +116,8 @@ ActiveRecord::Schema.define(version: 20161107181857) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "path_to_fb_info"
-    t.datetime "last_logged_on"
-    t.datetime "date_joined"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string   "auth_token"
     t.string   "full_name"
     t.string   "email"
