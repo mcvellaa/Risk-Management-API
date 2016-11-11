@@ -1,28 +1,17 @@
-== README
+== Risk Management API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is an API created by Sebastian Guerrero and Mark Vella for 67-442 Mobile Application Development in iOS, Fall 2016 at Carnegie Mellon University. This API is meant to be paired with an iOS app we are also developing, and the two aim to automate many of the common event risk management activities that organizations face on college campuses.
 
-Things you may want to cover:
+Technical Details:
 
-* Ruby version
+* Ruby 2.1.9
 
-* System dependencies
+* Using rails-api gem
 
-* Configuration
+* Allows unauthenticated user creation, every other action requires a valid user and matching authentication token in the header
 
-* Database creation
+* SQLite3 database in development, Postgres in production
 
-* Database initialization
+* Ready for deployment on Heroku
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* Integration with Twilio
