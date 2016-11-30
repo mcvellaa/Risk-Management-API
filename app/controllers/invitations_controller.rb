@@ -4,7 +4,7 @@ class InvitationsController < ApplicationController
   # GET /invitations
   # GET /invitations.json
   def index
-    @invitations = Invitation.all
+    @invitations = Invitation.for_user(request.headers['AuthorizationToken'].to_s)
 
     render json: @invitations
   end

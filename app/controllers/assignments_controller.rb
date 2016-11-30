@@ -4,10 +4,9 @@ class AssignmentsController < ApplicationController
   # GET /assignments
   # GET /assignments.json
   def index
-    @assignments = Assignment.allow
+    @assignments = Assignment.all
 
-    render json: @assignments 
-
+    render json: @assignments
   end
 
   # GET /assignments/1
