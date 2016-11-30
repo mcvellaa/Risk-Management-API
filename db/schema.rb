@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161110214036) do
+ActiveRecord::Schema.define(version: 20161130123456) do
 
   create_table "assignments", force: :cascade do |t|
     t.integer  "event_id"
@@ -69,6 +69,9 @@ ActiveRecord::Schema.define(version: 20161110214036) do
     t.datetime "list_close"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+    t.string   "admin_invite_code"
+    t.string   "team_invite_code"
+    t.string   "member_invite_code"
   end
 
   create_table "feedbacks", force: :cascade do |t|
