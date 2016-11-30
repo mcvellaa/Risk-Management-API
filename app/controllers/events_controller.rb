@@ -28,6 +28,9 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
+    @event.admin_invite_code = Event.invite_code
+    @event.team_invite_code = Event.invite_code
+    @event.member_invite_code = Event.invite_code
 
     if @event.save
       render json: @event, status: :created, location: @event
