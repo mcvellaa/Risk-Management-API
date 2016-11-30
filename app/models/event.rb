@@ -13,4 +13,6 @@ class Event < ActiveRecord::Base
     has_many :users, through: :event_users
     has_many :guests, through: :invitations
 
+    scope :for_user,  ->(auth_token) { joins(:user).where('auth_token = ?', auth_token) }
+
 end

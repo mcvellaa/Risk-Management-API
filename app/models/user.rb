@@ -13,5 +13,6 @@ class User < ActiveRecord::Base
     has_many :questions, through: :data
 
     # Validations
+    scope :for_user,  ->(auth_token) { where('auth_token = ?', auth_token) }
 
 end
