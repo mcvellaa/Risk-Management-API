@@ -27,15 +27,28 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
+    #first create the event and generate the codes
     @event = Event.new(event_params)
     @event.admin_invite_code = Event.invite_code
     @event.team_invite_code = Event.invite_code
     @event.member_invite_code = Event.invite_code
 
+    #save the event and then setup the event's admin
     if @event.save
-      render json: @event, status: :created, location: @event
+      auth_header = request.headers['AuthorizationToken'].to_s
+      @event_user = EventUser.new()
+      @event_user.user_id = User.find_by(auth_token:auth_header).id
+      @event_user.event_id = @event.id
+      @event_user.role = "Admin"
     else
       render json: @event.errors, status: :unprocessable_entity
+    end
+
+    #then save the event_user and return the event
+    if @event_user.save
+      render json: @event, status: :created, location: @event
+    else
+      render json: @event_user.errors, status: :unprocessable_entity
     end
   end
 

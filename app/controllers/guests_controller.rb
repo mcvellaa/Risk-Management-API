@@ -27,12 +27,24 @@ class GuestsController < ApplicationController
   # POST /guests
   # POST /guests.json
   def create
+    #create the guest
     @guest = Guest.new(guest_params)
 
+    #save the guest and create the invitation
     if @guest.save
-      render json: @guest, status: :created, location: @guest
+      @inv = Invitation.new()
+      @inv.guest_id = @guest.id
+      @inv.event_id = Event.find_by(id:request.headers['EventId'].to_s).id
+      @inv.user_id = User.find_by(auth_token:auth_header).id
     else
       render json: @guest.errors, status: :unprocessable_entity
+    end
+
+    #save the invitation and return the guest
+    if @inv.save
+      render json: @guest, status: :created, location: @guest
+    else
+      render json: @inv.errors, status: :unprocessable_entity
     end
   end
 

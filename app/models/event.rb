@@ -17,7 +17,7 @@ class Event < ActiveRecord::Base
     scope :upcoming, -> { where('date >= ?', Date.current) }
     scope :past, -> { where('date < ?', Date.current) }
 
-    def invite_code
+    def self.invite_code
         (0...8).map { (65 + rand(26)).chr }.join
     end
 

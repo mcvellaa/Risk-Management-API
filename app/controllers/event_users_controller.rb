@@ -27,7 +27,23 @@ class EventUsersController < ApplicationController
   # POST /event_users
   # POST /event_users.json
   def create
-    @event_user = EventUser.new(event_user_params)
+    @event_user = EventUser.new()
+
+    auth_header = request.headers['AuthorizationToken'].to_s
+    @event_user.user_id = User.find_by(auth_token:auth_header).id
+
+    invite_code = request.headers['InviteCode'].to_s
+    if Event.find_by(admin_invite_code:invite_code)
+      @event_user.event_id = Event.find_by(admin_invite_code:invite_code).id
+      @event_user.role = "Admin"
+    elsif Event.find_by(team_invite_code:invite_code)
+      @event_user.event_id = Event.find_by(team_invite_code:invite_code).id
+      @event_user.role = "Team"
+    elsif Event.find_by(member_invite_code:invite_code)
+      @event_user.event_id = Event.find_by(member_invite_code:invite_code).id
+      @event_user.role = "Member"
+    end
+
 
     if @event_user.save
       render json: @event_user, status: :created, location: @event_user
@@ -64,6 +80,6 @@ class EventUsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_user_params
-      params.require(:event_user).permit(:event_id, :user_id, :role, :last_location, :location_datetime)
+      params.require(:event_user).permit()
     end
 end
