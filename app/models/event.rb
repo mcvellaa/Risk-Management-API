@@ -13,7 +13,7 @@ class Event < ActiveRecord::Base
     has_many :users, through: :event_users
     has_many :guests, through: :invitations
 
-    scope :for_user,  ->(auth_token) { joins(:event_users).joins(:user).where('auth_token = ?', auth_token) }
+    scope :for_user,  ->(auth_token) { joins(:event_users).joins(:users).where('auth_token = ?', auth_token) }
     scope :upcoming, -> { where('date >= ?', Date.current) }
     scope :past, -> { where('date < ?', Date.current) }
 
