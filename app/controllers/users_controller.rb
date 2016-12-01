@@ -50,11 +50,11 @@ class UsersController < ApplicationController
 
   # DELETE /users/1
   # DELETE /users/1.json
-  def destroy
-    @user.destroy
-    
-    head :no_content
-  end
+  #def destroy
+  #  @user.destroy
+  #  
+  #  head :no_content
+  #end
 
   private
     # Use callbacks to share common setup or constraints between actions.

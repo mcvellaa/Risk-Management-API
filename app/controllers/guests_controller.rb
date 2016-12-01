@@ -35,7 +35,7 @@ class GuestsController < ApplicationController
       @inv = Invitation.new()
       @inv.guest_id = @guest.id
       @inv.event_id = Event.find_by(id:request.headers['EventId'].to_s).id
-      @inv.user_id = User.find_by(auth_token:auth_header).id
+      @inv.user_id = User.find_by(auth_token:request.headers['AuthorizationToken'].to_s).id
     else
       render json: @guest.errors, status: :unprocessable_entity
     end
