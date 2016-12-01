@@ -26,15 +26,15 @@ class InvitationsController < ApplicationController
 
   # POST /invitations
   # POST /invitations.json
-  #def create
-  #  @invitation = Invitation.new(invitation_params)
-  #
-  #  if @invitation.save
-  #    render json: @invitation, status: :created, location: @invitation 
-  #  else
-  #    render json: @invitation.errors, status: :unprocessable_entity
-  #  end
-  #end
+  def create
+    @invitation = Invitation.new(invitation_params)
+  
+    if @invitation.save
+      render json: @invitation, status: :created, location: @invitation 
+    else
+      render json: @invitation.errors, status: :unprocessable_entity
+    end
+  end
 
   # PATCH/PUT /invitations/1
   # PATCH/PUT /invitations/1.json
