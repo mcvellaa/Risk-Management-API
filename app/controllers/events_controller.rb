@@ -48,7 +48,7 @@ class EventsController < ApplicationController
     if @event_user.save
       render json: @event, status: :created, location: @event
     else
-      render json: @event.errors, status: :unprocessable_entity
+      render json: @event_user.errors, status: :unprocessable_entity
     end
   end
 
