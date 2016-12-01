@@ -27,7 +27,7 @@ class EventUsersController < ApplicationController
   # POST /event_users
   # POST /event_users.json
   def create
-    @event_user = EventUser.new(event_user_params)
+    @event_user = EventUser.new()
 
     auth_header = request.headers['AuthorizationToken'].to_s
     @event_user.user_id = User.find_by(auth_token:auth_header).id
