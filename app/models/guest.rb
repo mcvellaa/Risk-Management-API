@@ -11,6 +11,6 @@ class Guest < ActiveRecord::Base
     validates_uniqueness_of :name, :phone
 
     scope :for_user,    ->(auth_token) { joins(:invitations).joins(:users).where('auth_token = ?', auth_token) }
-    scope :for_event,   ->(event_id)   { joins(:invitations).joins(:events).where('event_id = ?', event_id) }
+    scope :for_event,   ->(event_id)   { joins(:invitations).joins(:events).where('invitations.event_id = ?', event_id) }
 
 end
