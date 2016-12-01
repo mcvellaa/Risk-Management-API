@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161130123456) do
+ActiveRecord::Schema.define(version: 20161201123456) do
 
   create_table "assignments", force: :cascade do |t|
     t.integer  "event_id"
@@ -98,8 +98,9 @@ ActiveRecord::Schema.define(version: 20161130123456) do
     t.integer  "guest_id"
     t.integer  "event_id"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "checked_in", default: false
   end
 
   create_table "locations", force: :cascade do |t|
