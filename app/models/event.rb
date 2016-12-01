@@ -15,7 +15,7 @@ class Event < ActiveRecord::Base
 
     scope :for_user,  ->(auth_token) { joins(:event_users).joins(:users).where('auth_token = ?', auth_token) }
 
-    def invite_code
+    def self.invite_code
         (0...8).map { (65 + rand(26)).chr }.join
     end
 
