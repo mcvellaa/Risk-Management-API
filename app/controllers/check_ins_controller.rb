@@ -40,6 +40,7 @@ class CheckInsController < ApplicationController
   # PATCH/PUT /check_ins/1.json
   def update
     @check_in = CheckIn.find(params[:id])
+    @check_in.user_id = User.find_by(auth_token:request.headers['AuthorizationToken'].to_s).id
 
     if @check_in.update(check_in_params)
       head :no_content
@@ -64,6 +65,6 @@ class CheckInsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def check_in_params
-      params.require(:check_in).permit(:user_id, :invitation_id, :time)
+      params.require(:check_in).permit(:invitation_id, :time)
     end
 end
