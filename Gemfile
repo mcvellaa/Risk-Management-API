@@ -7,6 +7,7 @@ gem 'sqlite3', group: :development
 # Use postgres on heroku for production
 gem 'pg', group: :production
 gem 'rails_12factor', group: :production
+gem 'twilio-ruby', group: :production
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
