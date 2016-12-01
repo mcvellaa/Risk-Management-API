@@ -14,8 +14,11 @@ class Event < ActiveRecord::Base
     has_many :guests, through: :invitations
 
     scope :for_user,  ->(auth_token) { joins(:event_users).joins(:user).where('auth_token = ?', auth_token) }
+    scope :upcoming, -> { where('date >= ?', Date.current) }
+    scope :past, -> { where('date < ?', Date.current) }
 
     def invite_code
         (0...8).map { (65 + rand(26)).chr }.join
+    end
 
 end

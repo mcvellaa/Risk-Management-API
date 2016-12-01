@@ -14,5 +14,7 @@ class User < ActiveRecord::Base
 
     # Validations
     scope :for_user,  ->(auth_token) { where('auth_token = ?', auth_token) }
+    validates_uniqueness_of :auth_token, case_sensitive: false
+
 
 end

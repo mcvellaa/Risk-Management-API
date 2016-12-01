@@ -11,5 +11,6 @@ class Guest < ActiveRecord::Base
 
     scope :for_user,  ->(auth_token) { joins(:invitation).joins(:user).where('auth_token = ?', auth_token) }
     scope :for_event, ->(event_id)   { joins(:invitation).joins(:events).where('event_id = ?', event_id) }
+    scope :nameIncluding, ->
 
 end
