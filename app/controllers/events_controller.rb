@@ -31,10 +31,10 @@ class EventsController < ApplicationController
     @event.admin_invite_code = Event.invite_code
     @event.team_invite_code = Event.invite_code
     @event.member_invite_code = Event.invite_code
-    
+
     auth_header = request.headers['AuthorizationToken'].to_s
     @event_user = EventUser.new()
-    @event_user.user_id = User.find_by(auth_token:auth_header)
+    @event_user.user_id = User.find_by(auth_token:auth_header).id
     @event_user.event_id = @event.id
     @event_user.role = "Admin"
 
