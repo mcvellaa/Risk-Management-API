@@ -32,7 +32,12 @@ class EventsController < ApplicationController
     @event.team_invite_code = Event.invite_code
     @event.member_invite_code = Event.invite_code
 
-    if @event.save
+    @event_user = EventUser.new()
+    @event_user.user_id = User.find_by(auth_token:auth_header)
+    @event_user.event_id = @event.id
+    @event_user.role = "Admin"
+
+    if @event.save and @event_user.save
       render json: @event, status: :created, location: @event
     else
       render json: @event.errors, status: :unprocessable_entity
