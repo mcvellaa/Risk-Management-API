@@ -30,7 +30,7 @@ class CheckOutsController < ApplicationController
     @check_out = CheckOut.new(check_out_params)
     @check_out.user_id = User.find_by(auth_token:request.headers['AuthorizationToken'].to_s).id
 
-    @inv = Invitation.find(id:@check_out.invitation_id)
+    @inv = Invitation.find_by(id:@check_out.invitation_id)
     @inv.update(checked_in:false)
 
     if @check_out.save
