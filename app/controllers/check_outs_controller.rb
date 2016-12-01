@@ -28,6 +28,7 @@ class CheckOutsController < ApplicationController
   # POST /check_outs.json
   def create
     @check_out = CheckOut.new(check_out_params)
+    @check_out.user_id = User.find_by(auth_token:request.headers['AuthorizationToken'].to_s).id
 
     if @check_out.save
       render json: @check_out, status: :created, location: @check_out
@@ -40,7 +41,6 @@ class CheckOutsController < ApplicationController
   # PATCH/PUT /check_outs/1.json
   def update
     @check_out = CheckOut.find(params[:id])
-    @check_out.user_id = User.find_by(auth_token:request.headers['AuthorizationToken'].to_s).id
   
     if @check_out.update(check_out_params)
       head :no_content
@@ -65,6 +65,6 @@ class CheckOutsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def check_out_params
-      params.require(:check_out).permit(:invitation_id, :time)
+      params.require(:check_out).permit(:invitation_id)
     end
 end
