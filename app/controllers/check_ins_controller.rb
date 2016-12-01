@@ -30,7 +30,7 @@ class CheckInsController < ApplicationController
     @check_in = CheckIn.new(check_in_params)
     @check_in.user_id = User.find_by(auth_token:request.headers['AuthorizationToken'].to_s).id
 
-    @inv = Invitation.find(id:@check_in.invitation_id)
+    @inv = Invitation.find_by(id:@check_in.invitation_id)
     @inv.update(checked_in:true)
 
     if @check_in.save
