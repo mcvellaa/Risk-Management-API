@@ -34,13 +34,13 @@ class EventUsersController < ApplicationController
 
     invite_code = request.headers['InviteCode'].to_s
     if Event.find_by(admin_invite_code:invite_code)
-      @event_user.event_id = Event.Event.find_by(admin_invite_code:invite_code).id
+      @event_user.event_id = Event.find_by(admin_invite_code:invite_code).id
       @event_user.role = "Admin"
     elsif Event.find_by(team_invite_code:invite_code)
-      @event_user.event_id = Event.Event.find_by(team_invite_code:invite_code).id
+      @event_user.event_id = Event.find_by(team_invite_code:invite_code).id
       @event_user.role = "Team"
     elsif Event.find_by(member_invite_code:invite_code)
-      @event_user.event_id = Event.Event.find_by(member_invite_code:invite_code).id
+      @event_user.event_id = Event.find_by(member_invite_code:invite_code).id
       @event_user.role = "Member"
     end
 
