@@ -4,7 +4,7 @@ class GuestsController < ApplicationController
   # GET /guests
   # GET /guests.json
   def index
-    @guests = Guest.all
+    @guests = Guest.for_event(Event.find_by(id:request.headers['EventId'].to_s).id)
 
     render json: @guests
   end
