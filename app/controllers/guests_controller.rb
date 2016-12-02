@@ -5,6 +5,11 @@ class GuestsController < ApplicationController
   # GET /guests.json
   def index
     @guests = Guest.for_event(Event.find_by(id:request.headers['EventId'].to_s).id)
+    if request.headers['Search'].to_s
+      @guests = Guest.for_event(Event.find_by(id:request.headers['EventId'].to_s).id).search(request.headers['Search'].to_s).order("name")
+    else
+      @guests = Guest.for_event(Event.find_by(id:request.headers['EventId'].to_s).id).order('name')
+    end
 
     render json: @guests
   end

@@ -4,7 +4,7 @@ class InvitationsController < ApplicationController
   # GET /invitations
   # GET /invitations.json
   def index
-    @invitations = Invitation.all
+    @invitations = Invitation.for_event(Event.find_by(id:request.headers['EventId'].to_s).id)
 
     render json: @invitations
   end
