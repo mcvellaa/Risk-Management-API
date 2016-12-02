@@ -14,7 +14,7 @@ class Guest < ActiveRecord::Base
     scope :for_event,   ->(event_id)   { joins(:invitations).joins(:events).where('invitations.event_id = ?', event_id) }
 
     def self.search(search)
-      where("name LIKE ?", "%#{search}%")
+      where("LOWER(name) LIKE ?", "%#{search}%")
     end
 
 end
