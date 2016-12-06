@@ -29,7 +29,7 @@ class CheckInsController < ApplicationController
   def create
     #@check_in = CheckIn.new(check_in_params_for_create)
     #@check_in.user_id = User.find_by(auth_token:request.headers['AuthorizationToken'].to_s).id
-    @inv = Invitation.for_guest_and_event(request.headers['guest_id'], request.headers['event_id']).first
+    @inv = Invitation.for_guest_and_event(request.headers['guest_id'], request.headers['event_id'])
     @check_in = CheckIn.new()
     @check_in.user_id = User.find_by(auth_token:request.headers['AuthorizationToken'].to_s).id
     @check_in.invitation_id =  @inv.id
