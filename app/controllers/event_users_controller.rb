@@ -4,6 +4,7 @@ class EventUsersController < ApplicationController
   # GET /event_users
   # GET /event_users.json
   def index
+
     @event_users = EventUser.all
 
     render json: @event_users
