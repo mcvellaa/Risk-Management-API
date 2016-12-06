@@ -10,8 +10,8 @@ class UsersController < ApplicationController
     render json: @users
   end
 
-  # GET /users/1
-  # GET /users/1.json
+  # GET /users/12345
+  # GET /users/12345.json
   def show
     render json: @user
   end
@@ -59,7 +59,7 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+      @user = User.find(params[:auth_token])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
