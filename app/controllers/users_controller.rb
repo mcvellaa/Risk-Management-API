@@ -16,8 +16,8 @@ class UsersController < ApplicationController
     render json: @user
   end
 
-  # GET /users/get
-  def get
+  # GET /users/getuser
+  def getuser
     auth_header = request.headers['AuthorizationToken'].to_s
     @user = User.find_by(auth_token:auth_header)
     render json: @user
