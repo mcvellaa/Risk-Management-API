@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:edit, :update, :destroy]
   skip_before_filter :authenticate_user_from_token, only: [:create]
 
   # GET /users
@@ -13,6 +13,8 @@ class UsersController < ApplicationController
   # GET /users/12345
   # GET /users/12345.json
   def show
+    auth_header = request.headers['AuthorizationToken'].to_s
+    @user = User.find_by(auth_token:auth_header)
     render json: @user
   end
 
@@ -59,7 +61,7 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:auth_token])
+      @user = User.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
