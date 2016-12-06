@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
   skip_before_filter :authenticate_user_from_token, only: [:create]
 
   # GET /users
@@ -13,6 +13,11 @@ class UsersController < ApplicationController
   # GET /users/12345
   # GET /users/12345.json
   def show
+    render json: @user
+  end
+
+  # GET /users/get
+  def get
     auth_header = request.headers['AuthorizationToken'].to_s
     @user = User.find_by(auth_token:auth_header)
     render json: @user

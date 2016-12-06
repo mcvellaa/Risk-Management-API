@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   post 'twilio/voice' => 'twilio#voice'
   post 'twilio/text' => 'twilio#text'
 
+  get 'users/get' => 'users#get'
+
   #route to handle token
   get :token, controller: 'application'
 
