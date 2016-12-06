@@ -27,10 +27,12 @@ class CheckOutsController < ApplicationController
   # POST /check_outs
   # POST /check_outs.json
   def create
-    @check_out = CheckOut.new(check_out_params)
+    
+    @inv = Invitation.for_guest(request.headers['guest_id']).for_event(request.headers['event_id']).first
+    @check_out = CheckIn.new(check_in_params_for_create)
     @check_out.user_id = User.find_by(auth_token:request.headers['AuthorizationToken'].to_s).id
-
-    @inv = Invitation.find(id:@check_out.invitation_id)
+    @check_out.invite_id =  @inv.id
+    
     @inv.update(checked_in:false)
 
     if @check_out.save
