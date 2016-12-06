@@ -27,7 +27,7 @@ class CheckOutsController < ApplicationController
   # POST /check_outs
   # POST /check_outs.json
   def create
-    @inv = Invitation.for_guest_and_event(request.headers['guest_id'].to_i, request.headers['event_id'].to_i).first
+    @inv = Invitation.for_guest_and_event(Guest.find_by(id:request.headers['GuestId'].to_s).id, Event.find_by(id:request.headers['EventId'].to_s).id).first
     @check_out = CheckOut.new()
     @check_out.user_id = User.find_by(auth_token:request.headers['AuthorizationToken'].to_s).id
     @check_out.invitation_id = @inv.id
