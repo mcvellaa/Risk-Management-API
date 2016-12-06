@@ -27,10 +27,12 @@ class CheckInsController < ApplicationController
   # POST /check_ins
   # POST /check_ins.json
   def create
-    @check_in = CheckIn.new(check_in_params)
+    #@check_in = CheckIn.new(check_in_params_for_create)
+    #@check_in.user_id = User.find_by(auth_token:request.headers['AuthorizationToken'].to_s).id
+    @inv = Invitation.for_event(request.headers['event_id']).for_guest(request.headers['guest_id']).first
+    @check_in = CheckIn.new()
     @check_in.user_id = User.find_by(auth_token:request.headers['AuthorizationToken'].to_s).id
-
-    @inv = Invitation.find_by(id:@check_in.invitation_id)
+    @check_in.invitation_id =  @inv.id
     @inv.update(checked_in:true)
 
     if @check_in.save
@@ -68,6 +70,6 @@ class CheckInsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def check_in_params
-      params.require(:check_in).permit(:invitation_id)
+      params.require(:check_in).permit()
     end
 end

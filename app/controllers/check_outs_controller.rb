@@ -27,10 +27,10 @@ class CheckOutsController < ApplicationController
   # POST /check_outs
   # POST /check_outs.json
   def create
-    @check_out = CheckOut.new(check_out_params)
+    @inv = Invitation.for_event(request.headers['event_id']).for_guest(request.headers['guest_id']).first
+    @check_out = CheckIn.new()
     @check_out.user_id = User.find_by(auth_token:request.headers['AuthorizationToken'].to_s).id
-
-    @inv = Invitation.find_by(id:@check_out.invitation_id)
+    @check_out.invitation_id = @inv.id
     @inv.update(checked_in:false)
 
     if @check_out.save
@@ -68,6 +68,6 @@ class CheckOutsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def check_out_params
-      params.require(:check_out).permit(:invitation_id)
+      params.require(:check_out).permit()
     end
 end
