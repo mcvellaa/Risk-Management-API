@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   resources :event_users, except: [:new, :edit]
   resources :users, except: [:new, :edit]
 
+  post 'twilio/voice' => 'twilio#voice'
+  post 'twilio/text' => 'twilio#text'
+
   #route to handle token
   get :token, controller: 'application'
 

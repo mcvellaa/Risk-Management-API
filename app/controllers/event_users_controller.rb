@@ -5,7 +5,7 @@ class EventUsersController < ApplicationController
   # GET /event_users.json
   def index
 
-    @event_users = EventUser.for_event(request.headers['event_id'])
+    @event_users = EventUser.for_event(Event.find_by(id:request.headers['EventId'].to_s).id)
 
     render json: @event_users
   end
