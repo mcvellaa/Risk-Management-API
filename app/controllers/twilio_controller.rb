@@ -26,7 +26,7 @@ class TwilioController < ApplicationController
     #for g in @guests
       client = Twilio::REST::Client.new Rails.application.secrets.twilio_account_sid, Rails.application.secrets.twilio_auth_token
       # send to g.phone
-      message = client.messages.create from: '+14122010448', to: '+1'+g"2035601401", body: mes
+      message = client.messages.create from: '+14122010448', to: '+1'+"2035601401", body: mes
       render plain: message.status
     #end
 
