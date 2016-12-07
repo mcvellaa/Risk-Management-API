@@ -6,7 +6,9 @@ class InvitationsController < ApplicationController
   def index
     @guests = (Invitation.for_user_and_event(User.find_by(auth_token:request.headers['AuthorizationToken'].to_s).id, Event.find_by(id:request.headers['EventId'].to_s).id))
 
-    #.map { |item|  item.guest }
+    for g in @guests
+     g = g.guest
+    end
 
     render json: @guests
   end
