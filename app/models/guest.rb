@@ -7,9 +7,6 @@ class Guest < ActiveRecord::Base
     has_many :check_outs, through: :invitations
     has_many :users, through: :invitations
 
-    # Validations
-    validates_uniqueness_of :name, :phone
-
     scope :for_user_and_event,    ->(auth_token, event_id) { joins(:invitations).joins(:users).where('users.auth_token = ? AND invitations.event_id = ?', auth_token, event_id) }
     scope :for_event,   ->(event_id)   { joins(:invitations).joins(:events).where('invitations.event_id = ?', event_id) }
 
