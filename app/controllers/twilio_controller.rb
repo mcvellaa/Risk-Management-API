@@ -35,7 +35,7 @@ class TwilioController < ApplicationController
         end
       end
       render plain: message.status
-    #end
+    end
 
 
   end
