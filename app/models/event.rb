@@ -14,7 +14,7 @@ class Event < ActiveRecord::Base
     has_many :guests, through: :invitations
 
     scope :for_user,  ->(auth_token) { joins(:event_users).joins(:users).where('auth_token = ?', auth_token) }
-    scope :upcoming, -> { where('date >= ?', Date.current) }
+    scope :upcoming, -> { where('start >= ?', Date.current) }
     scope :past, -> { where('date < ?', Date.current) }
 
     def self.invite_code
