@@ -4,7 +4,7 @@ class LocationsController < ApplicationController
   # GET /locations
   # GET /locations.json
   def index
-    @locations = Location.all
+    @locations = Location.for_event(Event.find_by(id:request.headers['EventId'].to_s).id)
 
     render json: @locations
   end
