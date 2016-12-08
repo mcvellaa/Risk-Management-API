@@ -10,7 +10,7 @@ class EventUsersController < ApplicationController
   end
 
   def geteventuserobjects
-    @Users = (EventUser.for_user_and_event(User.find_by(auth_token:request.headers['AuthorizationToken'].to_s).id, Event.find_by(id:request.headers['EventId'].to_s).id)).map(&:user)
+    @Users = (EventUser.for_event(Event.find_by(id:request.headers['EventId'].to_s).id)).map(&:user)
 
     render json: @Users
   end
