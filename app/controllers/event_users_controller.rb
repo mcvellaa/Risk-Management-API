@@ -4,6 +4,12 @@ class EventUsersController < ApplicationController
   # GET /event_users
   # GET /event_users.json
   def index
+    @event_users = Event.find_by(id:request.headers['EventId'].to_s).event_users
+
+    render json: @event_users
+  end
+
+  def geteventuserobjects
     @Users = (EventUser.for_user_and_event(User.find_by(auth_token:request.headers['AuthorizationToken'].to_s).id, Event.find_by(id:request.headers['EventId'].to_s).id)).map(&:user)
 
     render json: @Users

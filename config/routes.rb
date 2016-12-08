@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   post 'twilio/text' => 'twilio#text'
 
   get '/getuser' => 'users#getuser'
+  get '/geteventuserobjects' => 'event_users#geteventuserobjects'
 
   #route to handle token
   get :token, controller: 'application'
