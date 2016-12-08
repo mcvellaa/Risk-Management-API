@@ -43,6 +43,8 @@ class EventUsersController < ApplicationController
     elsif Event.find_by(member_invite_code:invite_code)
       @event_user.event_id = Event.find_by(member_invite_code:invite_code).id
       @event_user.role = "Member"
+    else 
+      render json: @event_user.errors, status: :unprocessable_entity
     end
 
 
