@@ -1,4 +1,5 @@
 class Guest < ActiveRecord::Base
+    before_save :reformat_phone
 
     # Relationships
     has_many :invitations
@@ -13,5 +14,12 @@ class Guest < ActiveRecord::Base
     def self.search(search)
       where("LOWER(name) LIKE ?", "%#{search}%")
     end
+
+    private
+        def reformat_phone
+          phone = self.phone.to_s  # change to string in case input as all numbers 
+          phone.gsub!(/[^0-9]/,"") # strip all non-digits
+          self.phone = phone       # reset self.phone to new string
+        end
 
 end
