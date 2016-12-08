@@ -1,5 +1,6 @@
 class GuestsController < ApplicationController
   before_action :set_guest, only: [:show, :edit, :update, :destroy]
+  before_save :reformat_phone
 
   # GET /guests
   # GET /guests.json
@@ -74,6 +75,11 @@ class GuestsController < ApplicationController
   end
 
   private
+    def reformat_phone
+      phone = self.phone.to_s  # change to string in case input as all numbers 
+      phone.gsub!(/[^0-9]/,"") # strip all non-digits
+      self.phone = phone       # reset self.phone to new string
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_guest
       @guest = Guest.find(params[:id])

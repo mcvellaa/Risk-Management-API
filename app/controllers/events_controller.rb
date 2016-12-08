@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = User.find_by(auth_token:request.headers['AuthorizationToken'].to_s).events
+    @events = User.find_by(auth_token:request.headers['AuthorizationToken'].to_s).events.upcoming
 
     render json: @events 
   end

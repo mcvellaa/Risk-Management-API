@@ -4,7 +4,9 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-    @questions = Question.all
+    num = Question.count('question')
+    randNum = 1 + rand(num)
+    @questions = Question.find_by(id:randNum)
 
     render json: @questions
   end
