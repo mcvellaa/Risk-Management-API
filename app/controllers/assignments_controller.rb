@@ -4,7 +4,7 @@ class AssignmentsController < ApplicationController
   # GET /assignments
   # GET /assignments.json
   def index
-    @assignments = Assignment.all
+    @assignments = Assignment.for_event(Event.find_by(id:request.headers['EventId'].to_s).id)
 
     render json: @assignments
   end
